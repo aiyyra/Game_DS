@@ -28,7 +28,6 @@ public class game extends JFrame implements Runnable{
     private Menu menu;
     private Playing playing;
     private Setting setting;
-    private player player;
     private CharacterManager Character;
        
     public game() {
@@ -115,7 +114,6 @@ public class game extends JFrame implements Runnable{
     private void initClasses() {
         render = new Render(this);
         gameScreen=new GameScreen(this);
-        player = new player(this);
         menu = new Menu(this);
         playing = new Playing(this);
         setting = new Setting(this);
@@ -140,7 +138,4 @@ public class game extends JFrame implements Runnable{
         return setting;
     }
 
-    public player getPlayer() {
-        return player;
-    }
 }

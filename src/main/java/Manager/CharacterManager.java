@@ -22,7 +22,7 @@ public class CharacterManager {
 
     public CharacterManager(Playing playing) {
         this.playing = playing;
-        testChar = new CharacterBase(25*0,25*0);
+        testChar = new CharacterBase(25*0,25*0+1);
     }
     
     

@@ -26,7 +26,6 @@ public class Playing extends GameScenes implements SceneMethod{
     private int[][] map;
     private TileManager tileManager;
     private MyButton bMenu;
-    private player player;
     private CharacterManager characterManager;
     private boolean TicTacToeStatus;
     
@@ -35,7 +34,6 @@ public class Playing extends GameScenes implements SceneMethod{
         
         map = LevelBuilder.getLevelData();
         tileManager = new TileManager();
-        player = game.getPlayer();
         
         characterManager = new CharacterManager(this);
 //                game.getCharacter();
@@ -64,7 +62,6 @@ public class Playing extends GameScenes implements SceneMethod{
         }
 //        if(false)update();
         drawButton(g);
-        drawPlayer(player,g);
         characterManager.Draw(g);
     }
     
@@ -90,7 +87,7 @@ public class Playing extends GameScenes implements SceneMethod{
     @Override
     public void mouseClicked(int x, int y) {
         if(bMenu.getBounds().contains(x,y)){
-            SetGameStates(GameStates.MENU);
+            SetGameStates(GameStates.SETTINGS);
         }
     }
 
@@ -138,8 +135,4 @@ public class Playing extends GameScenes implements SceneMethod{
     public boolean getTicTacToeStatus(){
         return this.TicTacToeStatus;
     }
-    
-    
-    
-    
 }
