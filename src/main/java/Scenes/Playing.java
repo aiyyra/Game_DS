@@ -81,7 +81,7 @@ public class Playing extends GameScenes implements SceneMethod{
     }
     
     private void initButtons() {
-        bMenu = new MyButton("Menu",400, 10, 70, 25); 
+        bMenu = new MyButton("Pause",400, 10, 70, 25); 
     }
 
     @Override
