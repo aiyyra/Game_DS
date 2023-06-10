@@ -36,7 +36,6 @@ public class Playing extends GameScenes implements SceneMethod{
         tileManager = new TileManager();
         
         characterManager = new CharacterManager(this);
-//                game.getCharacter();
         
         initButtons();
         //map

@@ -4,6 +4,7 @@
  */
 package main;
 
+import page.Exit_n_leaderboard;
 import Character.player;
 import Inputs.KeyBoardListener;
 import Inputs.myMouseListener;
@@ -45,12 +46,12 @@ public class game extends JFrame implements Runnable{
     
     
     
-    private void start(){
+    public void start(){
         gameThread = new Thread(this){
         };
         gameThread.start();
     }
-   
+    
     private void updateGame() {
         switch (GameStates.gameStates) {
             case MENU:
@@ -137,5 +138,11 @@ public class game extends JFrame implements Runnable{
     public Setting getSetting() {
         return setting;
     }
+
+    public GameScreen getGameScreen() {
+        return gameScreen;
+    }
+
+    
 
 }
