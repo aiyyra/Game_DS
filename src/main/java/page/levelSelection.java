@@ -131,6 +131,7 @@ public class levelSelection extends javax.swing.JFrame {
             game game = new game();
             SoundHandler.RunMusic("resource/suzume_instrument.wav");
             game.getGameScreen().initInputs();
+            game.getPlaying().setLevel(difficulty);
             game.start();
         }
     }//GEN-LAST:event_EnterButtonActionPerformed

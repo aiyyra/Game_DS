@@ -28,7 +28,7 @@ public class Playing extends GameScenes implements SceneMethod{
     private MyButton bMenu;
     private CharacterManager characterManager;
     private boolean TicTacToeStatus;
-    private int level;
+    private int level =1;
     
     public Playing(game game) {
         super(game);
@@ -46,7 +46,7 @@ public class Playing extends GameScenes implements SceneMethod{
     public void update(){
         characterManager.Update();
         if(getTicTacToeStatus()){
-            generateTicTacToe();
+            generateTicTacToe(level);
             setTicTacToeStatus(false);
         }
     }
@@ -116,12 +116,12 @@ public class Playing extends GameScenes implements SceneMethod{
         bMenu.resetBooleans();
     }
     
-    private void generateTicTacToe(){
+    private void generateTicTacToe(int level){
         int i = new java.util.Random().nextInt(1,6);
         switch (i) {
-            case 1,4:new TTT5x5();
+            case 1,4:new TTT5x5(level);
                 break;
-            case 2,5:new ReversedTTT(1);
+            case 2,5:new ReversedTTT(level);
                 break;
             case 3,6:new TTTtreble(12);
                 break;
@@ -146,5 +146,9 @@ public class Playing extends GameScenes implements SceneMethod{
 
     public boolean getTicTacToeStatus(){
         return this.TicTacToeStatus;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
     }
 }
