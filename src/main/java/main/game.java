@@ -6,7 +6,6 @@ package main;
 
 import Inputs.SoundHandler;
 import page.Exit_n_leaderboard;
-import Character.player;
 import Inputs.KeyBoardListener;
 import Inputs.myMouseListener;
 import Manager.CharacterManager;

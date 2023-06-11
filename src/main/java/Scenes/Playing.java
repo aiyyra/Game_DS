@@ -5,7 +5,6 @@
 package Scenes;
 
 import TTT.*;
-import Character.player;
 import Manager.CharacterManager;
 import Manager.TileManager;
 import UI.MyButton;
@@ -69,17 +68,6 @@ public class Playing extends GameScenes implements SceneMethod{
 //        if(false)update();
         drawButton(g);
         characterManager.Draw(g);
-    }
-    
-    public void drawPlayer(player player,Graphics g){
-        int x =(int) player.getX();
-        int y = (int)player.getY();
-        //fill border
-        g.setColor(Color.black);
-        g.drawOval(x, y, 18, 18);
-        //fill in
-        g.setColor(Color.pink);
-        g.fillOval(x, y, 18, 18);
     }
     
     private void drawButton(Graphics g) {

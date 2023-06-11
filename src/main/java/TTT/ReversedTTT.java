@@ -1,5 +1,6 @@
 package TTT;
 
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
@@ -16,20 +17,16 @@ public class ReversedTTT extends JFrame implements ActionListener {
         EASY, MEDIUM, HARD
     }
 
-//    public ReversedTTT() {
-//        this(Difficulty.EASY); // Set default difficulty
-//    }
-
     public ReversedTTT(int difficulty) {
         this.board = new char[3][3];
         this.currentPlayer = 'X';
         this.gameEnd = false;
-        if(difficulty==1)
-            this.difficulty=Difficulty.EASY;
-        else if (difficulty==2)
-            this.difficulty =Difficulty.MEDIUM;
+        if (difficulty == 1)
+            this.difficulty = Difficulty.EASY;
+        else if (difficulty == 2)
+            this.difficulty = Difficulty.MEDIUM;
         else
-            this.difficulty=Difficulty.HARD;
+            this.difficulty = Difficulty.HARD;
         this.buttons = new JButton[3][3];
         initializeBoard();
         createGUI();
@@ -90,7 +87,22 @@ public class ReversedTTT extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
         setVisible(true);
     }
+    private int calculateScore(char player) {
+        if (checkWin(player)) {
+            // Player wins
+            return 50;
+        } else if (checkWin(getOpponent(player))) {
+            // Player loses
+            return 0;
+        } else {
+            // It's a tie
+            return 20;
+        }
+    }
 
+    private char getOpponent(char player) {
+        return (player == 'X') ? 'O' : 'X';
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() instanceof JButton) {
@@ -106,120 +118,47 @@ public class ReversedTTT extends JFrame implements ActionListener {
                         }
                     }
                 }
-                makeMove(row, col);
+                if (row != -1 && col != -1) {
+                    button.setText("X");
+                    button.setForeground(Color.BLUE);
+                    board[row][col] = 'X';
+
+                    if (checkWin('X')) {
+                        JOptionPane.showMessageDialog(this, "Player O wins!, Score: "+calculateScore('X'));
+                        gameEnd = true;
+                    } else if (!isBoardFull()) {
+                        playComputerMove();
+                        if (checkWin('O')) {
+                            JOptionPane.showMessageDialog(this, "Player X wins!, Score: "+calculateScore('O'));
+                            gameEnd = true;
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "It's a draw!, Score: "+calculateScore('X'));
+                        gameEnd = true;
+                    }
+                }
+
             } else if (button.getText().equals("New Game")) {
                 resetGame();
             }
         }
     }
 
-    private void makeMove(int row, int col) {
-        if (row >= 0 && row < 3 && col >= 0 && col < 3 && board[row][col] == ' ') {
-            board[row][col] = currentPlayer;
-
-            JButton button = buttons[row][col];
-            button.setEnabled(false);
-
-            JLabel label = new JLabel(Character.toString(currentPlayer));
-            label.setFont(new Font("Ink Free", Font.BOLD, 60));
-            label.setForeground(currentPlayer == 'X' ? Color.RED : Color.GREEN);
-
-            Dimension buttonSize = button.getSize();
-            Dimension labelSize = label.getPreferredSize();
-            int x = (buttonSize.width - labelSize.width) / 2;
-            int y = (buttonSize.height - labelSize.height) / 2;
-            label.setBounds(x, y, labelSize.width, labelSize.height);
-
-            button.setLayout(null);
-            button.add(label);
 
 
-            if (currentPlayer == 'X') {
-                buttons[row][col].setBackground(Color.RED);
-            } else {
-                buttons[row][col].setBackground(Color.GREEN);
-            }
+    private void resetGame() {
+        initializeBoard();
+        currentPlayer = 'X';
+        gameEnd = false;
 
-
-            if (checkWin()) {
-                JOptionPane.showMessageDialog(this, "Player " + currentPlayer + " wins!");
-                gameEnd = true;
-                return;
-            }
-
-            if (checkDraw()) {
-                JOptionPane.showMessageDialog(this, "It's a draw!");
-                gameEnd = true;
-                return;
-            }
-
-            switchPlayer();
-
-            if (currentPlayer == 'O' && !gameEnd) {
-                computerMove();
-            }
-        }
-    }
-    private void switchPlayer() {
-        currentPlayer = (currentPlayer == 'X') ? 'O' : 'X';
-    }
-
-    private boolean checkWin() {
-        // Check rows
         for (int row = 0; row < 3; row++) {
-            if (board[row][0] == 'X' && board[row][1] == 'X' && board[row][2] == 'X') {
-                if (currentPlayer == 'O') {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else if (board[row][0] == 'O' && board[row][1] == 'O' && board[row][2] == 'O') {
-                if (currentPlayer == 'X') {
-                    return true;
-                } else {
-                    return false;
-                }
+            for (int col = 0; col < 3; col++) {
+                buttons[row][col].setText("");
             }
         }
-
-        // Check columns
-        for (int col = 0; col < 3; col++) {
-            if (board[0][col] == 'X' && board[1][col] == 'X' && board[2][col] == 'X') {
-                if (currentPlayer == 'O') {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else if (board[0][col] == 'O' && board[1][col] == 'O' && board[2][col] == 'O') {
-                if (currentPlayer == 'X') {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }
-
-        // Check diagonals
-        if ((board[0][0] == 'X' && board[1][1] == 'X' && board[2][2] == 'X') ||
-                (board[0][2] == 'X' && board[1][1] == 'X' && board[2][0] == 'X')) {
-            if (currentPlayer == 'O') {
-                return true;
-            } else {
-                return false;
-            }
-        } else if ((board[0][0] == 'O' && board[1][1] == 'O' && board[2][2] == 'O') ||
-                (board[0][2] == 'O' && board[1][1] == 'O' && board[2][0] == 'O')) {
-            if (currentPlayer == 'X') {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        return false;
     }
 
-    private boolean checkDraw() {
+    private boolean isBoardFull() {
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
                 if (board[row][col] == ' ') {
@@ -230,145 +169,184 @@ public class ReversedTTT extends JFrame implements ActionListener {
         return true;
     }
 
-    private void computerMove() {
+    private void playComputerMove() {
         switch (difficulty) {
             case EASY:
-                makeRandomMove();
+                makeEasyMove();
                 break;
             case MEDIUM:
                 makeMediumMove();
                 break;
             case HARD:
-                makeBestMove();
+                makeHardMove();
                 break;
         }
     }
 
-    private void makeRandomMove() {
+    private void makeEasyMove() {
         Random random = new Random();
         int row, col;
         do {
             row = random.nextInt(3);
             col = random.nextInt(3);
         } while (board[row][col] != ' ');
-        makeMove(row, col);
+
+        buttons[row][col].setText("O");
+        buttons[row][col].setForeground(Color.RED);
+        board[row][col] = 'O';
     }
 
     private void makeMediumMove() {
-        // First, check if there is a winning move for the computer
-        int[] winningMove = getWinningMove('O');
-        if (winningMove != null) {
-            makeMove(winningMove[0], winningMove[1]);
+        // Check if the computer can win in the next move
+        if (checkPossibleWinMove('O')) {
             return;
         }
 
-        // If no winning move, check if there is a blocking move for the opponent
-        int[] blockingMove = getWinningMove('X');
-        if (blockingMove != null) {
-            makeMove(blockingMove[0], blockingMove[1]);
+        // Check if the player is about to win and block them
+        if (checkPossibleWinMove('X')) {
             return;
         }
 
-        // If no winning or blocking move, make a random move
-        makeRandomMove();
+        // Play the best move using the Minimax algorithm
+        makeHardMove();
     }
 
-    private void makeBestMove() {
-        int[] bestMove = getBestMove();
-        makeMove(bestMove[0], bestMove[1]);
+    private boolean checkPossibleWinMove(char player) {
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                if (board[row][col] == ' ') {
+                    // Simulate a move and check if it leads to a win
+                    board[row][col] = player;
+                    if (checkWin(player)) {
+                        board[row][col] = 'O';
+                        buttons[row][col].setText("O");
+                        buttons[row][col].setForeground(Color.RED);
+                        currentPlayer = 'X';
+                        return true;
+                    }
+                    board[row][col] = ' ';
+                }
+            }
+        }
+        return false;
     }
 
-    private int[] getWinningMove(char player) {
+    private void makeHardMove() {
+        // Check if the board is empty
+        boolean emptyBoard = true;
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                if (board[row][col] != ' ') {
+                    emptyBoard = false;
+                    break;
+                }
+            }
+            if (!emptyBoard) {
+                break;
+            }
+        }
+
+        if (emptyBoard) {
+            // Play a random move in the center if the board is empty
+            board[1][1] = 'O';
+            buttons[1][1].setText("O");
+            buttons[1][1].setForeground(Color.RED);
+            currentPlayer = 'X';
+            return;
+        }
+
+        int bestScore = Integer.MIN_VALUE;
+        int bestRow = -1;
+        int bestCol = -1;
+
+        // Look for the best move by trying all possible moves
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                if (board[row][col] == ' ') {
+                    // Simulate a move by the computer
+                    board[row][col] = 'O';
+                    int score = minimax(board, 0, false);
+                    board[row][col] = ' ';
+
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestRow = row;
+                        bestCol = col;
+                    }
+                }
+            }
+        }
+
+        // Make the best move
+        board[bestRow][bestCol] = 'O';
+        buttons[bestRow][bestCol].setText("O");
+        buttons[bestRow][bestCol].setForeground(Color.RED);
+        currentPlayer = 'X';
+    }
+
+    private int minimax(char[][] board, int depth, boolean isMaximizing) {
+        if (checkWin('O')) {
+            return 1;
+        } else if (checkWin('X')) {
+            return -1;
+        } else if (isBoardFull()) {
+            return 0;
+        }
+
+        if (isMaximizing) {
+            int bestScore = Integer.MIN_VALUE;
+            for (int row = 0; row < 3; row++) {
+                for (int col = 0; col < 3; col++) {
+                    if (board[row][col] == ' ') {
+                        board[row][col] = 'O';
+                        int score = minimax(board, depth + 1, false);
+                        board[row][col] = ' ';
+                        bestScore = Math.max(score, bestScore);
+                    }
+                }
+            }
+            return bestScore;
+        } else {
+            int bestScore = Integer.MAX_VALUE;
+            for (int row = 0; row < 3; row++) {
+                for (int col = 0; col < 3; col++) {
+                    if (board[row][col] == ' ') {
+                        board[row][col] = 'X';
+                        int score = minimax(board, depth + 1, true);
+                        board[row][col] = ' ';
+                        bestScore = Math.min(score, bestScore);
+                    }
+                }
+            }
+            return bestScore;
+        }
+    }
+
+
+    private boolean checkWin(char player) {
         // Check rows
         for (int row = 0; row < 3; row++) {
-            if (board[row][0] == player && board[row][1] == player && board[row][2] == ' ') {
-                return new int[]{row, 2};
-            }
-            if (board[row][0] == player && board[row][2] == player && board[row][1] == ' ') {
-                return new int[]{row, 1};
-            }
-            if (board[row][1] == player && board[row][2] == player && board[row][0] == ' ') {
-                return new int[]{row, 0};
+            if (board[row][0] == player && board[row][1] == player && board[row][2] == player) {
+                return true;
             }
         }
 
         // Check columns
         for (int col = 0; col < 3; col++) {
-            if (board[0][col] == player && board[1][col] == player && board[2][col] == ' ') {
-                return new int[]{2, col};
-            }
-            if (board[0][col] == player && board[2][col] == player && board[1][col] == ' ') {
-                return new int[]{1, col};
-            }
-            if (board[1][col] == player && board[2][col] == player && board[0][col] == ' ') {
-                return new int[]{0, col};
+            if (board[0][col] == player && board[1][col] == player && board[2][col] == player) {
+                return true;
             }
         }
 
         // Check diagonals
-        if (board[0][0] == player && board[1][1] == player && board[2][2] == ' ') {
-            return new int[]{2, 2};
+        if (board[0][0] == player && board[1][1] == player && board[2][2] == player) {
+            return true;
         }
-        if (board[0][0] == player && board[2][2] == player && board[1][1] == ' ') {
-            return new int[]{1, 1};
-        }
-        if (board[1][1] == player && board[2][2] == player && board[0][0] == ' ') {
-            return new int[]{0, 0};
-        }
-        if (board[0][2] == player && board[1][1] == player && board[2][0] == ' ') {
-            return new int[]{2, 0};
-        }
-        if (board[0][2] == player && board[2][0] == player && board[1][1] == ' ') {
-            return new int[]{1, 1};
-        }
-        if (board[2][0] == player && board[1][1] == player && board[0][2] == ' ') {
-            return new int[]{0, 2};
+        if (board[0][2] == player && board[1][1] == player && board[2][0] == player) {
+            return true;
         }
 
-        return null;
+        return false;
     }
 
-    private int[] getBestMove() {
-        // Implement your logic to determine the best move for the computer
-        // This can involve using algorithms like Minimax or heuristics to evaluate the best move
-        // Here, I'll just make a random move for demonstration purposes
-        return getRandomEmptyCell();
-    }
-
-    private int[] getRandomEmptyCell() {
-        Random random = new Random();
-        int row, col;
-        do {
-            row = random.nextInt(3);
-            col = random.nextInt(3);
-        } while (board[row][col] != ' ');
-        return new int[]{row, col};
-    }
-
-    private void resetGame() {
-        gameEnd = false;
-        currentPlayer = 'X';
-        initializeBoard();
-        clearBoardButtons();
-    }
-
-    private void clearBoardButtons() {
-        for (int row = 0; row < 3; row++) {
-            for (int col = 0; col < 3; col++) {
-                buttons[row][col].setText("");
-                buttons[row][col].setEnabled(true);
-            }
-        }
-    }
-
-//    public static void main(String[] args) {
-//        SwingUtilities.invokeLater(() -> {
-//            try {
-//                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-//            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-//                ex.printStackTrace();
-//            }
-//            ReversedTTT game = new ReversedTTT(3);
-//        });
-//    }
 }

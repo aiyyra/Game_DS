@@ -10,7 +10,6 @@ import java.awt.event.KeyListener;
 import main.GameStates;
 import static main.GameStates.*;
 import main.game;
-import Character.player;
 import Manager.CharacterManager;
 
 
