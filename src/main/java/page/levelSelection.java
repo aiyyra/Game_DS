@@ -4,6 +4,7 @@
  */
 package page;
 
+import Inputs.SoundHandler;
 import main.game;
 
 /**
@@ -126,6 +127,7 @@ public class levelSelection extends javax.swing.JFrame {
             this.dispose();
             this.difficulty =jComboBox1.getSelectedIndex();
             game game = new game();
+            SoundHandler.RunMusic("resource/suzume_instrument.wav");
             game.getGameScreen().initInputs();
             game.start();
         }

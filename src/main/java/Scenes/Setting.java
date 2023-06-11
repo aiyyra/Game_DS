@@ -37,13 +37,13 @@ public class Setting extends GameScenes implements SceneMethod{
     }
     
     private void initButtons() {
-        bMenu = new MyButton("Menu",400, 10, 70, 25); 
+        bMenu = new MyButton("Resume",400, 10, 70, 25); 
     }
 
     @Override
     public void mouseClicked(int x, int y) {
         if(bMenu.getBounds().contains(x,y)){
-            SetGameStates(GameStates.MENU);
+            SetGameStates(GameStates.PLAYING);
         }
     }
 
