@@ -9,7 +9,7 @@ package main;
  * @author HP
  */
 public enum GameStates {
-    PLAYING,MENU,SETTINGS;
+    PLAYING,MENU,SETTINGS,END;
     
     public static GameStates gameStates = MENU;
     

@@ -30,6 +30,8 @@ public class game extends JFrame implements Runnable{
     private Menu menu;
     private Playing playing;
     private Setting setting;
+    private LeaderboardEnd end;
+    
     private CharacterManager Character;
        
     public game() {
@@ -62,6 +64,8 @@ public class game extends JFrame implements Runnable{
                  break;
             case SETTINGS:
                  break;
+            case END:
+                break;
             default:
                 break; 
         }
@@ -120,6 +124,7 @@ public class game extends JFrame implements Runnable{
         menu = new Menu(this);
         playing = new Playing(this);
         setting = new Setting(this);
+        end = new LeaderboardEnd(this);
         
     }
 
@@ -145,6 +150,9 @@ public class game extends JFrame implements Runnable{
         return gameScreen;
     }
 
+    public LeaderboardEnd getEnd() {
+        return end;
+    }
     
 
 }

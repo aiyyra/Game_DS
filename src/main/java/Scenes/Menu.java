@@ -21,7 +21,7 @@ public class Menu extends GameScenes implements SceneMethod{
     private int[][] map = new FinalMap().getFin();
     private int PIXEL_SIZE = 25;
     
-    private MyButton bPlaying,bSettings,bQuit;
+    private MyButton bPlaying,bSettings,bQuit,bLeaderboard;
     
     public Menu(game game) {
         super(game);
@@ -37,6 +37,7 @@ public class Menu extends GameScenes implements SceneMethod{
         bPlaying.draw(g);
         bSettings.draw(g);
         bQuit.draw(g);
+        bLeaderboard.draw(g);
     }
 
     private void initButtons() {
@@ -50,6 +51,7 @@ public class Menu extends GameScenes implements SceneMethod{
         bPlaying = new MyButton("Play", x, y, w, h);
         bSettings = new MyButton("Settings", x,( y + yOffSet), w, h);
         bQuit = new MyButton("Quit", x, (y + yOffSet*2), w, h);
+        bLeaderboard = new MyButton("Leaderboard", x, (y + yOffSet*3), w, h);
     }
 
     @Override
@@ -63,6 +65,9 @@ public class Menu extends GameScenes implements SceneMethod{
         }
         if(bQuit.getBounds().contains(x,y)){
             System.exit(0);
+        }
+        if(bLeaderboard.getBounds().contains(x,y)){
+            SetGameStates(GameStates.END);
         }
     }
 
@@ -80,6 +85,10 @@ public class Menu extends GameScenes implements SceneMethod{
         if(bQuit.getBounds().contains(x,y)){
             bQuit.setMouseOver(true);
         }
+        bLeaderboard.setMouseOver(false);
+        if(bLeaderboard.getBounds().contains(x,y)){
+            bLeaderboard.setMouseOver(true);
+        }
     }
 
     @Override
@@ -93,6 +102,9 @@ public class Menu extends GameScenes implements SceneMethod{
         if(bQuit.getBounds().contains(x,y)){
             bQuit.setMousePressed(true);
         }
+        if(bLeaderboard.getBounds().contains(x,y)){
+            bLeaderboard.setMousePressed(true);
+        }
         
     }
 
@@ -105,6 +117,7 @@ public class Menu extends GameScenes implements SceneMethod{
         bPlaying.resetBooleans();
         bSettings.resetBooleans();
         bQuit.resetBooleans();
+        bLeaderboard.resetBooleans();
     }
 
     

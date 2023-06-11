@@ -29,6 +29,7 @@ public class Playing extends GameScenes implements SceneMethod{
     private CharacterManager characterManager;
     private boolean TicTacToeStatus;
     private int level =1;
+    private boolean endgame =false;
     
     public Playing(game game) {
         super(game);
@@ -48,6 +49,11 @@ public class Playing extends GameScenes implements SceneMethod{
         if(getTicTacToeStatus()){
             generateTicTacToe(level);
             setTicTacToeStatus(false);
+        }
+        if(endgame){
+            System.out.println("hai");
+            GameStates.SetGameStates(GameStates.END);
+            setEndgame(false);
         }
     }
     
@@ -151,4 +157,10 @@ public class Playing extends GameScenes implements SceneMethod{
     public void setLevel(int level) {
         this.level = level;
     }
+
+    public void setEndgame(boolean endgame) {
+        this.endgame = endgame;
+    }
+    
+    
 }

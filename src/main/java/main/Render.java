@@ -31,7 +31,9 @@ public class Render {
             case SETTINGS:
                 game.getSetting().render(g);
                 break;
-            
+            case END:
+                game.getEnd().render(g);
+                break;
         }
     }
 }

@@ -26,7 +26,7 @@ public class CharacterManager {
     
     
     public void Update(){
-        if(collisionWithExit())System.out.println("Exit");
+        if(collisionWithExit())playing.setEndgame(true);
             
     }
 
