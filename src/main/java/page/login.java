@@ -4,12 +4,14 @@
  */
 package page;
 
+import javax.swing.ImageIcon;
 /**
  *
  * @author HP
  */
 public class login extends javax.swing.JFrame {
 
+    ImageIcon icon = new ImageIcon("resource/SuzuDoor.jpg");
     /**
      * Creates new form login
      */
@@ -82,7 +84,7 @@ public class login extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\HP\\OneDrive - Universiti Malaya\\3. DS\\Game\\resource\\SuzuDoor.jpg")); // NOI18N
+        jLabel1.setIcon(icon);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
