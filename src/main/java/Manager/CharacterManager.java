@@ -5,13 +5,9 @@
 package Manager;
 
 import Character.CharacterBase;
-import Character.CharacterBase.Move;
 import Scenes.Playing;
 import java.awt.Color;
 import java.awt.Graphics;
-import main.GameStates.*;
-import main.game;
-import page.Exit_n_leaderboard;
 
 /**
  *
