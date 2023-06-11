@@ -4,6 +4,7 @@
  */
 package main;
 
+import Inputs.SoundHandler;
 import page.Exit_n_leaderboard;
 import Character.player;
 import Inputs.KeyBoardListener;
@@ -108,6 +109,7 @@ public class game extends JFrame implements Runnable{
     
     public static void main(String[] args) {
         game game = new game();
+        SoundHandler.RunMusic("resource/suzume_instrument.wav");
         game.gameScreen.initInputs();
         game.start();
     }
