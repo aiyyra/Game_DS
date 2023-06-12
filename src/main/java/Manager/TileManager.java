@@ -26,7 +26,7 @@ public class TileManager {
     private void createTiles() {
         tiles.add(EMPTY_SPACES = new Tile(Color.WHITE,1));
         tiles.add(OBSTACLES = new Tile(Color.BLACK,2));
-        tiles.add(STATIONS = new Tile(Color.YELLOW,3));
+        tiles.add(STATIONS = new Tile(Color.orange,3));
         tiles.add(FINAL_DESTINATION = new Tile(Color.RED,4));
     }
     

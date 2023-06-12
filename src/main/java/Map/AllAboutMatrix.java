@@ -6,7 +6,7 @@ package Map;
 
 
 import java.util.List;
-class AllAboutMatrix {
+public class AllAboutMatrix {
     public static void convertToMatrix(List<String> path) {
         int[][] matrix = new int[40][20];
 
