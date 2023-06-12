@@ -6,6 +6,7 @@ package Manager;
 
 import Character.CharacterBase;
 import Scenes.Playing;
+import UserInfo.PlayerAcc;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -17,6 +18,7 @@ public class CharacterManager {
     
     private Playing playing;
     public CharacterBase testChar;
+    private PlayerAcc existingPlayer;
     private float speed = 3f;
 
     public CharacterManager(Playing playing) {
@@ -24,6 +26,12 @@ public class CharacterManager {
         testChar = new CharacterBase(24*0,24*0);
     }
     
+    public CharacterManager(Playing playing,PlayerAcc existingPlayer) {
+        this.playing = playing;
+        int x = existingPlayer.getxPlayer();
+        int y = existingPlayer.getyPlayer();
+        testChar = new CharacterBase(x,y);
+    }
     
     public void Update(){
         if(collisionWithExit())playing.setEndgame(true);

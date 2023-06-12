@@ -65,7 +65,6 @@ public class Playing extends GameScenes implements SceneMethod{
                 g.fillRect(y*tilesSize, x*tilesSize, tilesSize, tilesSize);
             }
         }
-//        if(false)update();
         drawButton(g);
         characterManager.Draw(g);
     }

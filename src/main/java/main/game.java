@@ -30,8 +30,6 @@ public class game extends JFrame implements Runnable{
     private Playing playing;
     private Setting setting;
     private LeaderboardEnd end;
-    
-    private CharacterManager Character;
        
     public game() {
         
