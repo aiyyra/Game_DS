@@ -12,6 +12,7 @@ import Manager.CharacterManager;
 import Scenes.*;
 import javax.swing.JFrame;
 import static main.GameStates.*;
+import Scenes.leaderboardGUI;
 
 /**
  *
@@ -30,6 +31,7 @@ public class game extends JFrame implements Runnable{
     private Playing playing;
     private Setting setting;
     private LeaderboardEnd end;
+    private leaderboardGUI board;
        
     public game() {
         
@@ -122,6 +124,7 @@ public class game extends JFrame implements Runnable{
         playing = new Playing(this);
         setting = new Setting(this);
         end = new LeaderboardEnd(this);
+        board = new leaderboardGUI();
         
     }
 

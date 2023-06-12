@@ -7,6 +7,7 @@ package Scenes;
 import UI.MyButton;
 import java.awt.Color;
 import java.awt.Graphics;
+import javax.swing.JPanel;
 import main.GameStates;
 import static main.GameStates.SetGameStates;
 import main.game;
@@ -17,7 +18,7 @@ import main.game;
  */
 public class LeaderboardEnd extends GameScenes implements SceneMethod{
 
-     
+    
     private MyButton bQuit;
 
     public LeaderboardEnd(game game) {
@@ -29,11 +30,15 @@ public class LeaderboardEnd extends GameScenes implements SceneMethod{
     @Override
     public void render(Graphics g) {
         
+        //draw table 
+        g.drawRect(75, 125, 350, 800);
+        g.drawLine(250, 125, 250, 925);
+        g.drawLine(75, 150, 425, 150);
         
         
         
-        g.setColor(Color.red);
-        g.fillRect(0, 0, 400, 400);
+//        g.setColor(Color.red);
+//        g.fillRect(0, 0, 400, 400);
         
         drawButton(g);
     }
