@@ -28,8 +28,13 @@ public class LeaderboardEnd extends GameScenes implements SceneMethod{
     
     @Override
     public void render(Graphics g) {
+        
+        
+        
+        
         g.setColor(Color.red);
         g.fillRect(0, 0, 400, 400);
+        
         drawButton(g);
     }
     

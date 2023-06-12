@@ -5,18 +5,21 @@
 package page;
 
 import javax.swing.ImageIcon;
+import UserInfo.PlayerAcc;
 /**
  *
  * @author HP
  */
 public class login extends javax.swing.JFrame {
-
+    
+    private PlayerAcc playerAcc;
     ImageIcon icon = new ImageIcon("resource/SuzuDoor.jpg");
     /**
      * Creates new form login
      */
     public login() {
         initComponents();
+        playerAcc = new PlayerAcc("", 0, "",0,0); // Initialize the PlayerAcc instance
     }
 
     /**
@@ -141,14 +144,26 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void EnterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterButtonActionPerformed
-        // TODO add your handling code here:
-        if(evt.getSource()== EnterButton){
+        String username = jTextField3.getText();
+        String password = jTextField4.getText();
+
+        // Perform authentication check using the PlayerAcc instance
+        if (playerAcc.authenticatePlayer(username, password)) {
+            System.out.println("Authentication successful. Logging in...");
             new levelSelection();
             this.dispose();
-
-            //            Main start = new Main();//add start game to enable login and exit
-            //            start.startGame();
+        } else {
+            System.out.println("Authentication failed. Invalid username or password.");
+            // Show an error message to the user or perform any other desired action
         }
+//        // TODO add your handling code here:
+//        if(evt.getSource()== EnterButton){
+//            new levelSelection();
+//            this.dispose();
+//
+//            //            Main start = new Main();//add start game to enable login and exit
+//            //            start.startGame();
+//        }
     }//GEN-LAST:event_EnterButtonActionPerformed
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
