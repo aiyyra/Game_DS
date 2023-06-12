@@ -31,12 +31,6 @@ public class mapObj {
         modifypixels();
     }
 
-
-    
-
-    
-    
-
     @Override
     public String toString() {
         String ret = "Map for " + location;
@@ -75,9 +69,6 @@ public class mapObj {
         }
     }
     
-   
-    
-    
     public void modifypixels(){
         for (int j = 0; j < 20; j++) {
             for (int i = 0; i < 10; i++) {
@@ -95,9 +86,6 @@ public class mapObj {
         BufferedImage cimage = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
         Graphics2D g2g = cimage.createGraphics();
     }
-    
-     
-    
     
     public int[][] getarray(){
         return pixels;

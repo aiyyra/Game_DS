@@ -12,7 +12,6 @@ import java.util.Arrays;
  */
 public class FinalMap {
     
-    
      mapObj map1 = new mapObj("image1");//[10][20]
      mapObj map2 = new mapObj("image2");
      mapObj map3 = new mapObj("image3");
@@ -20,23 +19,11 @@ public class FinalMap {
     
      int[][] fin = new int[20][20];
 
-//    public static void main(String[] args) {
-//        topPart();
-//        botPart();
-//        
-//        
-//        for(int i=0;i<20;i++){
-//            System.out.println(Arrays.toString(fin[i]));
-//        }
-//    }
-
     public FinalMap() {
         replace();
         topPart();
         botPart();
     }
-     
-     
     
     public void topPart(){
 

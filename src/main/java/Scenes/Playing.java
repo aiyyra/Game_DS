@@ -23,6 +23,7 @@ public class Playing extends GameScenes implements SceneMethod{
 
     private int tilesSize =25;
     private int[][] map;
+    private int [][] spath;
     private TileManager tileManager;
     private MyButton bMenu;
     private CharacterManager characterManager;
@@ -34,6 +35,7 @@ public class Playing extends GameScenes implements SceneMethod{
         super(game);
         
         map = LevelBuilder.getLevelData();
+        spath = LevelBuilder.getshortpath();
         tileManager = new TileManager();
         
         characterManager = new CharacterManager(this);
@@ -58,6 +60,14 @@ public class Playing extends GameScenes implements SceneMethod{
     
     @Override
     public void render(Graphics g) {
+        
+        drawtiles(g);
+        drawSPath(g);
+        drawButton(g);
+        characterManager.Draw(g);
+    }
+    
+    private void drawtiles(Graphics g){
         for(int y =0;y<map.length;y++){
             for(int x=0;x<map[y].length;x++){
                 int id = map[y][x];
@@ -65,8 +75,18 @@ public class Playing extends GameScenes implements SceneMethod{
                 g.fillRect(y*tilesSize, x*tilesSize, tilesSize, tilesSize);
             }
         }
-        drawButton(g);
-        characterManager.Draw(g);
+    }
+    
+    private void drawSPath(Graphics g){
+        for(int x=0;x<spath.length;x++){
+            for(int y=0;y<spath[0].length;y++){
+                if(spath[x][y]==1){
+                    g.setColor(Color.yellow);
+                    g.fillOval(y*tilesSize+14, x*tilesSize+14, 5, 5);
+                }
+                
+            }
+        }
     }
     
     private void drawButton(Graphics g) {
