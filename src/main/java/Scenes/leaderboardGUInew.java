@@ -8,9 +8,14 @@ package Scenes;
  *
  * @author baest
  */
-import javax.swing.*;
+import UserInfo.PlayerAcc;
 
+
+import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -18,44 +23,48 @@ import java.util.List;
 //import java.io.BufferedReader;
 //import java.io.FileReader;
 
-public class leaderboardGUI extends JPanel {
-    private List<Player> players;
+public class leaderboardGUInew extends JPanel {
+    private List<PlayerAcc> players;
+
    
     private JLabel titleLabel;
     private JPanel leaderboardPanel;
-    private JButton button = new JButton();
+    //private JButton button = new JButton();
     
-    public leaderboardGUI() {
+    public leaderboardGUInew() {
+        players = new ArrayList<>();
+
+        // Read player data from text file
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("resource/playerInfo.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+            String[] userInfo = line.split(",");
+            String username = userInfo[0];
+            int score = Integer.parseInt(userInfo[2]);
+            players.add(new PlayerAcc(username, score, "", 0, 0));
+            }
+            reader.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred while reading player information.");
+            e.printStackTrace();
+        }
+        
         //example data
         // Initialize players
-        players = new ArrayList<>();
-        players.add(new Player("Player 1", 5)); // Example player data
-        players.add(new Player("Player 2", 7));
-        players.add(new Player("Player 3", 9));
-        players.add(new Player("Player 4", 6));
-        players.add(new Player("Player 5", 4));
-        players.add(new Player("Player 6", 1));
-        players.add(new Player("Player 7", 0));
+//        players = new ArrayList<>();
+//        players.add(new Player("Player 1", 5)); // Example player data
+//        players.add(new Player("Player 2", 7));
+//        players.add(new Player("Player 3", 9));
+//        players.add(new Player("Player 4", 6));
+//        players.add(new Player("Player 5", 4));
+//        players.add(new Player("Player 6", 1));
+//        players.add(new Player("Player 7", 0));
         // Add more players as needed
-        
-        // Read player data from text file
-        //try {
-            //BufferedReader reader = new BufferedReader(new FileReader("playerdata.txt"));
-            //String line;
-            //while ((line = reader.readLine()) != null) {
-                //String[] data = line.split(",");
-                //String playerName = data[0];
-                //int score = Integer.parseInt(data[1]);
-                //players.add(new Player(playerName, score));
-            //}
-            //reader.close();
-        //} catch (Exception e) {
-            //e.printStackTrace();
-        //}
         
         
         // Sort players based on score in descending order
-        Collections.sort(players, Comparator.comparingInt(Player::getScore).reversed());
+        Collections.sort(players, Comparator.comparingInt(PlayerAcc::getScore).reversed());
 
         // Create the leaderboard panel
         leaderboardPanel = new JPanel(new GridLayout(players.size() + 1, 3, 10, 10));
@@ -82,12 +91,12 @@ public class leaderboardGUI extends JPanel {
 
         // Add player data
         int rank = 1;
-        for (Player player : players) {
+        for (PlayerAcc player : players) {
             JLabel rankValueLabel = new JLabel(String.valueOf(rank));
             rankValueLabel.setHorizontalAlignment(JLabel.CENTER);
             leaderboardPanel.add(rankValueLabel);
 
-            JLabel playerNameValueLabel = new JLabel(player.getName());
+            JLabel playerNameValueLabel = new JLabel(player.getUsername());
             playerNameValueLabel.setHorizontalAlignment(JLabel.CENTER);
             leaderboardPanel.add(playerNameValueLabel);
 
@@ -142,7 +151,7 @@ public class leaderboardGUI extends JPanel {
     public static void main(String[] args) {
         JFrame frame = new JFrame();
         
-        leaderboardGUI lb = new leaderboardGUI();
+        leaderboardGUInew lb = new leaderboardGUInew();
         frame.setSize(400,400);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -156,22 +165,4 @@ public class leaderboardGUI extends JPanel {
    
     
     
-}
-
-class Player {
-    private String name;
-    private int score;
-
-    public Player(String name, int score) {
-        this.name = name;
-        this.score = score;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getScore() {
-        return score;
-    }
 }

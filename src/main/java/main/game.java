@@ -4,15 +4,13 @@
  */
 package main;
 
-import Inputs.SoundHandler;
 import page.Exit_n_leaderboard;
-import Inputs.KeyBoardListener;
-import Inputs.myMouseListener;
+import Inputs.*;
 import Manager.CharacterManager;
 import Scenes.*;
 import javax.swing.JFrame;
 import static main.GameStates.*;
-import Scenes.leaderboardGUI;
+import Scenes.leaderboardGUInew;
 
 /**
  *
@@ -31,7 +29,7 @@ public class game extends JFrame implements Runnable{
     private Playing playing;
     private Setting setting;
     private LeaderboardEnd end;
-    private leaderboardGUI board;
+    private leaderboardGUInew board;
        
     public game() {
         
@@ -40,8 +38,8 @@ public class game extends JFrame implements Runnable{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setResizable(false);
-        
         add(gameScreen);
+        
         pack();
         setVisible(true);
     }
@@ -64,6 +62,8 @@ public class game extends JFrame implements Runnable{
             case SETTINGS:
                  break;
             case END:
+                end.update(this);
+                
                 break;
             default:
                 break; 
@@ -124,8 +124,14 @@ public class game extends JFrame implements Runnable{
         playing = new Playing(this);
         setting = new Setting(this);
         end = new LeaderboardEnd(this);
-        board = new leaderboardGUI();
+        board = new leaderboardGUInew();
         
+    }
+    
+    public void showBoard(){
+        getGameScreen().setVisible(false);
+        board.setVisible(true);
+        this.add(board);
     }
 
     

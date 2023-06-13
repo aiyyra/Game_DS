@@ -17,19 +17,19 @@ import java.util.Arrays;
 
 public class Import {
     
-    public static void main(String[] args) throws IOException{
-        
-        int[][] matrix = {{1,2},{3,4}};
-        int[][] myInt = new int[4][4];
-        System.out.println(Arrays.deepToString(myInt));
-        System.out.println("");
-        for(int i = 0; i< matrix.length; i++){
-            for (int j = 0; j < matrix[i].length; j++){
-                myInt[i+2][j] = matrix[i][j];
-            }
-        }
-        System.out.println(Arrays.deepToString(matrix));
-        System.out.println(Arrays.deepToString(myInt));
-        
-    }
+//    public static void main(String[] args) throws IOException{
+//        
+//        int[][] matrix = {{1,2},{3,4}};
+//        int[][] myInt = new int[4][4];
+//        System.out.println(Arrays.deepToString(myInt));
+//        System.out.println("");
+//        for(int i = 0; i< matrix.length; i++){
+//            for (int j = 0; j < matrix[i].length; j++){
+//                myInt[i+2][j] = matrix[i][j];
+//            }
+//        }
+//        System.out.println(Arrays.deepToString(matrix));
+//        System.out.println(Arrays.deepToString(myInt));
+//        
+//    }
 }

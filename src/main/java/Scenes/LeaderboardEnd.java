@@ -18,22 +18,27 @@ import main.game;
  */
 public class LeaderboardEnd extends GameScenes implements SceneMethod{
 
-    
+    private leaderboardGUInew lb;
     private MyButton bQuit;
 
     public LeaderboardEnd(game game) {
         super(game);
+        
         initButtons();
     }
     
+    
+    public void update(game game){
+        game.showBoard();
+    }
     
     @Override
     public void render(Graphics g) {
         
         //draw table 
-        g.drawRect(75, 125, 350, 800);
-        g.drawLine(250, 125, 250, 925);
-        g.drawLine(75, 150, 425, 150);
+//        g.drawRect(75, 125, 350, 800);
+//        g.drawLine(250, 125, 250, 925);
+//        g.drawLine(75, 150, 425, 150);
         
         
         

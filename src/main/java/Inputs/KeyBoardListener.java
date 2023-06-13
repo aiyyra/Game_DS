@@ -42,6 +42,9 @@ public class KeyBoardListener implements KeyListener{
                         game.getPlaying().getCharacterManager().goright();
                     else if(e.getKeyCode()==KeyEvent.VK_W)
                         game.getPlaying().getCharacterManager().goup();
+                    // will remove later
+                    else if(e.getKeyCode()==KeyEvent.VK_SPACE)
+                        game.getPlaying().getCharacterManager().respawn();
                     break;
                 case SETTINGS:
                     break;

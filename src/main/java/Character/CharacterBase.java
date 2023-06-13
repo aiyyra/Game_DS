@@ -48,7 +48,7 @@ public class CharacterBase {
 	x += move.deltaX * pixelsPerStep;
         
     }
-    
+
     
     public float getX() {
 	return x;
@@ -75,5 +75,5 @@ public class CharacterBase {
     }
     
     
-    
+   
 }

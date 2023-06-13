@@ -1,5 +1,5 @@
-anis,1234
-afiq,1234
-elvis,1234
-kimi,1234
-dieqa,1234
+anis,1234,0
+afiq,1234,100
+elvis,1234,200
+kimi,1234,300
+dieqa,1234,400
