@@ -6,8 +6,7 @@ package main;
 
 import Inputs.SoundHandler;
 import page.Exit_n_leaderboard;
-import Inputs.KeyBoardListener;
-import Inputs.myMouseListener;
+import Inputs.*;
 import Manager.CharacterManager;
 import Scenes.*;
 import javax.swing.JFrame;

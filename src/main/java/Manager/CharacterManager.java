@@ -6,9 +6,9 @@ package Manager;
 
 import Character.CharacterBase;
 import Scenes.Playing;
-import UserInfo.PlayerAcc;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Stack;
 
 /**
  *
@@ -18,20 +18,34 @@ public class CharacterManager {
     
     private Playing playing;
     public CharacterBase testChar;
-    private PlayerAcc existingPlayer;
     private float speed = 3f;
+    private Stack<location> stationstack = new Stack();
+    private location location = new location();
 
     public CharacterManager(Playing playing) {
         this.playing = playing;
         testChar = new CharacterBase(24*0,24*0);
     }
     
-    public CharacterManager(Playing playing,PlayerAcc existingPlayer) {
-        this.playing = playing;
-        int x = existingPlayer.getxPlayer();
-        int y = existingPlayer.getyPlayer();
-        testChar = new CharacterBase(x,y);
+    public void respawn(){
+        if(stationstack.isEmpty()){
+            System.out.println("loss");
+        }
+        else {
+            location temp = stationstack.pop();
+    //        System.out.println(stationstack.peek().x);
+    //        System.out.println(stationstack.peek().y);
+            this.testChar = new CharacterBase(temp.x,temp.y);
+        }
+        
     }
+    
+    public void respawn(int x, int y){
+        this.testChar = new CharacterBase(x,y);
+        
+
+    }
+    
     
     public void Update(){
         if(collisionWithExit())playing.setEndgame(true);
@@ -86,6 +100,40 @@ public class CharacterManager {
         g.fillOval(x, y, size, size);
     }
     
+    public location getlocation(){
+        this.setLocation();
+        return location;
+    }
+    
+    public void setLocation() {
+        int x= (int)testChar.getX();
+        int y= (int)testChar.getY();
+        
+        location.x=x;
+        location.y=y;
+    }
+    
+public class location{
+    int x=24;
+    int y=24;
+
+        public void setX(int x) {
+            this.x = x;
+        }
+
+        public void setY(int y) {
+            this.y = y;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public int getY() {
+            return y;
+        }
+}
+    
     public boolean collisionWithObstacle(){
         int [][] tiles = playing.getMap();
 	//Maybe create if statements to only check nearby squares
@@ -112,6 +160,8 @@ public class CharacterManager {
 		    boolean isIntersecting = stationInstersect(i, j);
                     
 		    if (isIntersecting) {
+                        stationstack.push(getlocation());
+                        this.location = new location();
 			return true;
 		    }
 		}

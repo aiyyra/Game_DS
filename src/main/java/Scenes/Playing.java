@@ -81,7 +81,7 @@ public class Playing extends GameScenes implements SceneMethod{
         for(int x=0;x<spath.length;x++){
             for(int y=0;y<spath[0].length;y++){
                 if(spath[x][y]==1){
-                    g.setColor(Color.yellow);
+                    g.setColor(Color.blue);
                     g.fillOval(y*tilesSize+14, x*tilesSize+14, 5, 5);
                 }
                 
@@ -130,6 +130,7 @@ public class Playing extends GameScenes implements SceneMethod{
     }
     
     private void generateTicTacToe(int level){
+        
         int i = new java.util.Random().nextInt(1,6);
         switch (i) {
             case 1,4:new TTT5x5(level);
