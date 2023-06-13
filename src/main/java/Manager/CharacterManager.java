@@ -27,18 +27,32 @@ public class CharacterManager {
         testChar = new CharacterBase(24*0,24*0);
     }
     
+    //undo position without save
     public void respawn(){
+        stationstack.pop();
         if(stationstack.isEmpty()){
-            System.out.println("loss");
+            playing.setEndgame(true);
         }
         else {
-            location temp = stationstack.pop();
-    //        System.out.println(stationstack.peek().x);
-    //        System.out.println(stationstack.peek().y);
+            location temp = stationstack.peek();
             this.testChar = new CharacterBase(temp.x,temp.y);
+            stationstack.pop();
         }
         
     }
+    
+    // undo position while save checkpoint
+//    public void respawn(){
+//        stationstack.pop();
+//        if(stationstack.isEmpty()){
+//            playing.setEndgame(true);
+//        }
+//        else {
+//            location temp = stationstack.peek();
+//            this.testChar = new CharacterBase(temp.x,temp.y);
+//        }
+//        
+//    }
     
     public void respawn(int x, int y){
         this.testChar = new CharacterBase(x,y);
@@ -98,6 +112,10 @@ public class CharacterManager {
         int y = (int)e.getY()+2;
         g.setColor(Color.cyan);
         g.fillOval(x, y, size, size);
+    }
+
+    public Stack<location> getStationstack() {
+        return stationstack;
     }
     
     public location getlocation(){

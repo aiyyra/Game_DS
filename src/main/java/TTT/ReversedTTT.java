@@ -1,10 +1,11 @@
 package TTT;
 
 
+import Scenes.Playing;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-import javax.swing.*;
+import javax.swing.*;   
 
 public class ReversedTTT extends JFrame implements ActionListener {
     private final char[][] board;
@@ -12,12 +13,14 @@ public class ReversedTTT extends JFrame implements ActionListener {
     private boolean gameEnd;
     private final Difficulty difficulty;
     private final JButton[][] buttons;
+    private Playing playing;
 
     enum Difficulty {
         EASY, MEDIUM, HARD
     }
 
-    public ReversedTTT(int difficulty) {
+    public ReversedTTT(int difficulty,Playing playing) {
+        this.playing=playing;
         this.board = new char[3][3];
         this.currentPlayer = 'X';
         this.gameEnd = false;
@@ -124,6 +127,7 @@ public class ReversedTTT extends JFrame implements ActionListener {
                     board[row][col] = 'X';
 
                     if (checkWin('X')) {
+                        playing.setLossTicTacToe(true);
                         JOptionPane.showMessageDialog(this, "Player O wins!, Score: "+calculateScore('X'));
                         gameEnd = true;
                     } else if (!isBoardFull()) {
@@ -348,5 +352,9 @@ public class ReversedTTT extends JFrame implements ActionListener {
 
         return false;
     }
+    
+    
+    
+    
 
 }

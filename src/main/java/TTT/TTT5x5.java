@@ -8,6 +8,7 @@ package TTT;
  *
  * @author baest
  */
+import Scenes.Playing;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,7 +17,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+
 public class TTT5x5 extends JFrame implements ActionListener {
+    private Playing playing;
     private char[][] gameBoard;
     private static final int BOARD_SIZE = 5;
     private static final char PLAYER_SYMBOL = 'X';
@@ -62,72 +65,10 @@ public class TTT5x5 extends JFrame implements ActionListener {
     }
 }
 
-
-    
-    public TTT5x5() {
-        this.setSize(400, 400);
-        this.
-        gameBoard = new char[BOARD_SIZE][BOARD_SIZE];
-        initializeGameBoard();
-        playerScore = 0;
-        opponentScore = 0;
-        movesCount = 0;
-        currentPlayer = PLAYER_SYMBOL;
-        
-        
-        
-        JPanel difficultyPanel = new JPanel(new GridLayout(1, 3));
-    easyButton = new JButton("Easy");
-    easyButton.addActionListener(this);
-    mediumButton = new JButton("Medium");
-    mediumButton.addActionListener(this);
-    hardButton = new JButton("Hard");
-    hardButton.addActionListener(this);
-    difficultyPanel.add(easyButton);
-    difficultyPanel.add(mediumButton);
-    difficultyPanel.add(hardButton);
-    JOptionPane.showMessageDialog(this, difficultyPanel, "Choose Difficulty", JOptionPane.INFORMATION_MESSAGE);
-
-    //add(difficultyPanel, BorderLayout.SOUTH);
-
-    setTitle("Tic-Tac-Toe");
-    setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    setLayout(new BorderLayout());
-
-        buttons = new JButton[BOARD_SIZE][BOARD_SIZE];
-        JPanel boardPanel = new JPanel(new GridLayout(BOARD_SIZE, BOARD_SIZE));
-        for (int i = 0; i < BOARD_SIZE; i++) {
-            for (int j = 0; j < BOARD_SIZE; j++) {
-                buttons[i][j] = new JButton();
-                buttons[i][j].setFont(new Font(Font.SANS_SERIF, Font.BOLD, 60));
-                buttons[i][j].addActionListener(this);
-                boardPanel.add(buttons[i][j]);
-            }
-        }
-
-        titleLabel = new JLabel("Tic-Tac-Toe");
-        titleLabel.setFont(new Font("Ink Free", Font.BOLD, 75));
-        titleLabel.setHorizontalAlignment(JLabel.CENTER);
-
-        playerScoreLabel = new JLabel("Player: " + playerScore);
-        opponentScoreLabel = new JLabel("Opponent: " + opponentScore);
-        JPanel scorePanel = new JPanel(new BorderLayout());
-        scorePanel.add(playerScoreLabel, BorderLayout.WEST);
-        scorePanel.add(opponentScoreLabel, BorderLayout.EAST);
-
-        add(titleLabel, BorderLayout.NORTH);
-        add(boardPanel, BorderLayout.CENTER);
-        add(scorePanel, BorderLayout.SOUTH);
-
-        
-
-
-    pack();
-    setVisible(true);
-    }
     
     //try add difficulty here
-    public TTT5x5(int difficulty) {
+    public TTT5x5(int difficulty,Playing playing) {
+        this.playing=playing;
         gameBoard = new char[BOARD_SIZE][BOARD_SIZE];
         initializeGameBoard();
         playerScore = 0;
@@ -345,6 +286,7 @@ public void actionPerformed(ActionEvent e) {
                             makeHardMove(); // Add code to make a hard move
                         }
                         if (checkWin(OPPONENT_SYMBOL)) {
+                            playing.setLossTicTacToe(true);
                             JOptionPane.showMessageDialog(TTT5x5.this, "Opponent wins!");
                             opponentScore++;
                             opponentScoreLabel.setText("Opponent: " + opponentScore);
@@ -504,7 +446,7 @@ public void actionPerformed(ActionEvent e) {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new TTT5x5(3);
+//                new TTT5x5(3);
             }
         });
     }
