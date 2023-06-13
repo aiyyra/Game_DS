@@ -28,6 +28,7 @@ public class Playing extends GameScenes implements SceneMethod{
     private MyButton bMenu;
     private CharacterManager characterManager;
     private boolean TicTacToeStatus;
+    private boolean lossTicTacToe=false;
     private int level =1;
     private boolean endgame =false;
     
@@ -47,6 +48,12 @@ public class Playing extends GameScenes implements SceneMethod{
     
     public void update(){
         characterManager.Update();
+        if(lossTicTacToe){
+            System.out.println("loss ttt");
+            
+            characterManager.respawn();
+            setLossTicTacToe(false);
+        }
         if(getTicTacToeStatus()){
             generateTicTacToe(level);
             setTicTacToeStatus(false);
@@ -133,11 +140,11 @@ public class Playing extends GameScenes implements SceneMethod{
         
         int i = new java.util.Random().nextInt(1,6);
         switch (i) {
-            case 1,4:new TTT5x5(level);
+            case 1,4:new TTT5x5(level,this);
                 break;
-            case 2,5:new ReversedTTT(level);
+            case 2,5:new ReversedTTT(level,this);
                 break;
-            case 3,6:new TTTtreble(12);
+            case 3,6:new TTTtreble(12);//TTTtreble(12,this);
                 break;
         }
     }
@@ -162,6 +169,12 @@ public class Playing extends GameScenes implements SceneMethod{
         return this.TicTacToeStatus;
     }
 
+    public void setLossTicTacToe(boolean lossTicTacToe) {
+        this.lossTicTacToe = lossTicTacToe;
+    }
+
+    
+    
     public void setLevel(int level) {
         this.level = level;
     }
