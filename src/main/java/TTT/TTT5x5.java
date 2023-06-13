@@ -504,7 +504,7 @@ public void actionPerformed(ActionEvent e) {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                new TTT5x5();
+                new TTT5x5(3);
             }
         });
     }

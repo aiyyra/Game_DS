@@ -126,8 +126,9 @@ public class levelSelection extends javax.swing.JFrame {
     private void EnterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterButtonActionPerformed
         // TODO add your handling code here:
         if(evt.getSource()== EnterButton){
-            this.dispose();
             this.difficulty =jComboBox1.getSelectedIndex();
+            this.dispose();
+            
             game game = new game();
             SoundHandler.RunMusic("resource/suzume_instrument.wav");
             game.getGameScreen().initInputs();
