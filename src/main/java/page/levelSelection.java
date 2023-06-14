@@ -15,13 +15,15 @@ import javax.swing.ImageIcon;
 public class levelSelection extends javax.swing.JFrame {
 
     ImageIcon icon = new ImageIcon("resource/SuzuDoor.jpg");
+    private String username;
     private int difficulty;
 
     /**
      * Creates new form levelSelection
      */
-    public levelSelection() {
+    public levelSelection(String username) {
         setVisible(true);
+        this.username = username;
         initComponents();
     }
 
@@ -129,7 +131,7 @@ public class levelSelection extends javax.swing.JFrame {
             this.difficulty =jComboBox1.getSelectedIndex();
             this.dispose();
             
-            game game = new game();
+            game game = new game(username);
             SoundHandler.RunMusic("resource/suzume_instrument.wav");
             game.getGameScreen().initInputs();
             game.getPlaying().setLevel(difficulty);

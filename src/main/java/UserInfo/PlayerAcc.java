@@ -5,6 +5,7 @@
 package UserInfo;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class PlayerAcc {
     private String username;
@@ -74,5 +75,9 @@ public class PlayerAcc {
         return false; // Authentication failed
     }
 
+    public static void saveGame(String username){
+        String path = "resource/"+username+".dat";
     }
+    
+}
 

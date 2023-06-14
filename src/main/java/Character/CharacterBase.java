@@ -5,12 +5,13 @@
 package Character;
 
 import java.awt.Rectangle;
+import java.io.Serializable;
 
 /**
  *
  * @author HP
  */
-public class CharacterBase {
+public class CharacterBase implements Serializable{
     private final static int size = 20;
     private float x;
     private float y;
@@ -73,6 +74,13 @@ public class CharacterBase {
     public void setY(float y) {
         this.y = y;
     }
+
+    @Override
+    public String toString() {
+        String s = "x: "+getX()+"\ny: "+getY();
+        return s;
+    }
+    
     
     
    

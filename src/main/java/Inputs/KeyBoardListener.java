@@ -48,6 +48,10 @@ public class KeyBoardListener implements KeyListener{
                     break;
                 case SETTINGS:
                     break;
+                case END:
+                    if(e.getKeyCode()==KeyEvent.VK_SPACE)
+                        System.out.println("space");
+                    break;
                 default:
                     break;
             }

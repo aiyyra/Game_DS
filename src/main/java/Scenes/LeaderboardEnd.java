@@ -30,8 +30,8 @@ public class LeaderboardEnd extends GameScenes implements SceneMethod{
     
     public void update(game game){
         game.showBoard();
-    }
-    
+        }
+        
     @Override
     public void render(Graphics g) {
         

@@ -4,6 +4,7 @@
  */
 package Scenes;
 
+import Character.CharacterBase;
 import TTT.*;
 import Manager.CharacterManager;
 import Manager.TileManager;
@@ -136,6 +137,11 @@ public class Playing extends GameScenes implements SceneMethod{
         bMenu.resetBooleans();
     }
     
+    public void load() {
+        this.characterManager.testChar = (CharacterBase) game.getSaver().loadgame();
+    }
+    
+    
     private void generateTicTacToe(int level){
         
         int i = new java.util.Random().nextInt(1,6);
@@ -182,6 +188,8 @@ public class Playing extends GameScenes implements SceneMethod{
     public void setEndgame(boolean endgame) {
         this.endgame = endgame;
     }
+
+    
     
     
 }
