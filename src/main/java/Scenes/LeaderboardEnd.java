@@ -28,9 +28,13 @@ public class LeaderboardEnd extends GameScenes implements SceneMethod{
     }
     
     
-    public void update(game game){
-        game.showBoard();
+    public void update(game game) {
+        try {
+            game.showBoard();
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
+    }
         
     @Override
     public void render(Graphics g) {
