@@ -19,7 +19,7 @@ public class login extends javax.swing.JFrame {
      */
     public login() {
         initComponents();
-        playerAcc = new PlayerAcc("", 0, "",0,0); // Initialize the PlayerAcc instance
+        playerAcc = new PlayerAcc("", 0, ""); // Initialize the PlayerAcc instance
     }
 
     /**

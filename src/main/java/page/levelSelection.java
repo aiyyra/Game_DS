@@ -5,6 +5,8 @@
 package page;
 
 import Inputs.SoundHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import main.game;
 import javax.swing.ImageIcon;
     
@@ -128,14 +130,18 @@ public class levelSelection extends javax.swing.JFrame {
     private void EnterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnterButtonActionPerformed
         // TODO add your handling code here:
         if(evt.getSource()== EnterButton){
-            this.difficulty =jComboBox1.getSelectedIndex();
-            this.dispose();
-            
-            game game = new game(username);
-            SoundHandler.RunMusic("resource/suzume_instrument.wav");
-            game.getGameScreen().initInputs();
-            game.getPlaying().setLevel(difficulty);
-            game.start();
+            try {
+                this.difficulty =jComboBox1.getSelectedIndex();
+                this.dispose();
+                
+                game game = new game(username);
+                SoundHandler.RunMusic("resource/suzume_instrument.wav");
+                game.getGameScreen().initInputs();
+                game.getPlaying().setLevel(difficulty);
+                game.start();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(levelSelection.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_EnterButtonActionPerformed
 

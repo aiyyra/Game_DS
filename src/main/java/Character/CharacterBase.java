@@ -15,14 +15,12 @@ public class CharacterBase implements Serializable{
     private final static int size = 20;
     private float x;
     private float y;
-    private float pixelsPerStep;
-    private Rectangle bounds;
+    private int score;
     
     public CharacterBase(int x,int y){
         this.x = x;
         this.y = y;
-        this.bounds = new Rectangle((int)this.x,(int)this.y,25,25);
-        this.pixelsPerStep = 1.5f;
+        this.score =0;
     }
     
     public void move(float x,float y){
@@ -44,13 +42,6 @@ public class CharacterBase implements Serializable{
 	}
     }
     
-    public void move(Move move) {
-	y += move.deltaY * pixelsPerStep;
-	x += move.deltaX * pixelsPerStep;
-        
-    }
-
-    
     public float getX() {
 	return x;
     }
@@ -63,9 +54,11 @@ public class CharacterBase implements Serializable{
         return size;
     }
 
-    public Rectangle getBounds() {
-        return bounds;
+    public int getScore() {
+        return score;
     }
+    
+    
 
     public void setX(float x) {
         this.x = x;
@@ -82,6 +75,7 @@ public class CharacterBase implements Serializable{
     }
     
     
-    
-   
+    public void addscore(int add){
+        score +=add;
+    }
 }

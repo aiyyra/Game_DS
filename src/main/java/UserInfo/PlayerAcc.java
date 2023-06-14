@@ -11,47 +11,23 @@ public class PlayerAcc {
     private String username;
     private String password;
     private int score;
-    private int xPlayer;
-    private int yPlayer;
 
-    public PlayerAcc(String name, int score, String password,int xPlayer,int yPlayer) {
+    public PlayerAcc(String name, int score, String password) {
         this.username = name;
-        this.score = score;
         this.password = password;
-        this.xPlayer=xPlayer;
-        this.yPlayer= yPlayer;
+        this.score = score;
     }
-
-    public int getxPlayer() {
-        return xPlayer;
-    }
-
-    public void setxPlayer(int xPlayer) {
-        this.xPlayer = xPlayer;
-    }
-
-    public int getyPlayer() {
-        return yPlayer;
-    }
-
-    public void setyPlayer(int yPlayer) {
-        this.yPlayer = yPlayer;
-    }
-
+    
     public String getUsername() {
         return username;
     }
 
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-
     public String getPassword() {
         return password;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public boolean authenticatePlayer(String username, String password) {

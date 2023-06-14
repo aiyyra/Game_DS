@@ -34,7 +34,7 @@ public class game extends JFrame implements Runnable{
     private leaderboardGUInew board;
     private static saveGame saver;
        
-    public game(String username) {
+    public game(String username) throws ClassNotFoundException {
         
         this.username = username;
         initClasses();
@@ -114,27 +114,27 @@ public class game extends JFrame implements Runnable{
     }
 
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
         game game = new game("afiq");
         SoundHandler.RunMusic("resource/suzume_instrument.wav");
         game.gameScreen.initInputs();
         game.start();
     }
 
-    private void initClasses() {
+    private void initClasses() throws ClassNotFoundException {
         render = new Render(this);
         gameScreen=new GameScreen(this);
         menu = new Menu(this);
         playing = new Playing(this);
         setting = new Setting(this);
         end = new LeaderboardEnd(this);
-        board = new leaderboardGUInew();
+        board = new leaderboardGUInew(this);
         saver = new saveGame(this);
-        System.out.println(this.username);
         
     }
     
-    public void showBoard(){
+    public void showBoard() throws ClassNotFoundException{
+        board = new leaderboardGUInew(this);
         getGameScreen().setVisible(false);
         board.setVisible(true);
         this.add(board);

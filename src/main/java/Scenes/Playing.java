@@ -9,6 +9,7 @@ import TTT.*;
 import Manager.CharacterManager;
 import Manager.TileManager;
 import UI.MyButton;
+import UserInfo.saveGame;
 import helps.LevelBuilder;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -29,6 +30,8 @@ public class Playing extends GameScenes implements SceneMethod{
     private MyButton bMenu;
     private CharacterManager characterManager;
     private boolean TicTacToeStatus;
+    private int score=0;
+    private boolean winTicTacToe=false;
     private boolean lossTicTacToe=false;
     private int level =1;
     private boolean endgame =false;
@@ -55,12 +58,19 @@ public class Playing extends GameScenes implements SceneMethod{
             characterManager.respawn();
             setLossTicTacToe(false);
         }
+        if(winTicTacToe){
+            System.out.println("win ttt");
+            characterManager.testChar.addscore(score);
+            System.out.println(characterManager.testChar.getScore());
+            setWinTicTacToe(false, 0);
+        }
         if(getTicTacToeStatus()){
             generateTicTacToe(level);
             setTicTacToeStatus(false);
         }
         if(endgame){
             System.out.println("hai");
+            saveGame.save();
             GameStates.SetGameStates(GameStates.END);
             setEndgame(false);
         }
@@ -178,6 +188,13 @@ public class Playing extends GameScenes implements SceneMethod{
     public void setLossTicTacToe(boolean lossTicTacToe) {
         this.lossTicTacToe = lossTicTacToe;
     }
+
+    public void setWinTicTacToe(boolean winTicTacToe,int score) {
+        this.winTicTacToe = winTicTacToe;
+        this.score = score;
+    }
+    
+    
 
     
     
