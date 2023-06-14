@@ -19,7 +19,7 @@ public class login extends javax.swing.JFrame {
      */
     public login() {
         initComponents();
-        playerAcc = new PlayerAcc("", 0, "",0,0); // Initialize the PlayerAcc instance
+        playerAcc = new PlayerAcc("", 0, ""); // Initialize the PlayerAcc instance
     }
 
     /**
@@ -150,7 +150,7 @@ public class login extends javax.swing.JFrame {
         // Perform authentication check using the PlayerAcc instance
         if (playerAcc.authenticatePlayer(username, password)) {
             System.out.println("Authentication successful. Logging in...");
-            new levelSelection();
+            new levelSelection(username);
             this.dispose();
         } else {
             System.out.println("Authentication failed. Invalid username or password.");

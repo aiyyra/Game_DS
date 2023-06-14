@@ -133,6 +133,7 @@ public class ReversedTTT extends JFrame implements ActionListener {
                     } else if (!isBoardFull()) {
                         playComputerMove();
                         if (checkWin('O')) {
+                            playing.setWinTicTacToe(true, 50);
                             JOptionPane.showMessageDialog(this, "Player X wins!, Score: "+calculateScore('O'));
                             gameEnd = true;
                         }

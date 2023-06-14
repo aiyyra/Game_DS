@@ -48,6 +48,8 @@ public class KeyBoardListener implements KeyListener{
                     break;
                 case SETTINGS:
                     break;
+                case END:
+                    break;
                 default:
                     break;
             }

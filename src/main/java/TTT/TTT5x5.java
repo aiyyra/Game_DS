@@ -272,7 +272,7 @@ public void actionPerformed(ActionEvent e) {
                         playerScore++;
                         scoreBoard++; // Increment the score
                         playerScoreLabel.setText("Player: " + playerScore);
-//                        resetGame();
+                        playing.setWinTicTacToe(true,50);
                     } else if (isBoardFull()) {
                         JOptionPane.showMessageDialog(TTT5x5.this, "It's a draw!");
 //                        resetGame();

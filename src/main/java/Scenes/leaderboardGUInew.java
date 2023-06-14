@@ -8,41 +8,56 @@ package Scenes;
  *
  * @author baest
  */
+import Character.CharacterBase;
 import UserInfo.PlayerAcc;
 
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import main.game;
 //import java.io.BufferedReader;
 //import java.io.FileReader;
 
 public class leaderboardGUInew extends JPanel {
     private List<PlayerAcc> players;
+    private game game;
 
    
     private JLabel titleLabel;
     private JPanel leaderboardPanel;
     //private JButton button = new JButton();
     
-    public leaderboardGUInew() {
+    public leaderboardGUInew(game game) throws ClassNotFoundException {
         players = new ArrayList<>();
+        this.game = game;
 
         // Read player data from text file
         try {
             BufferedReader reader = new BufferedReader(new FileReader("resource/playerInfo.txt"));
             String line;
-            while ((line = reader.readLine()) != null) {
-            String[] userInfo = line.split(",");
-            String username = userInfo[0];
-            int score = Integer.parseInt(userInfo[2]);
-            players.add(new PlayerAcc(username, score, "", 0, 0));
+            while ((line = reader.readLine())!= null) {
+                String[] userInfo = line.split(",");
+                String username = userInfo[0];
+
+                String tempPath = "resource/"+username+".dat";
+                File tempfile = new File(tempPath);
+
+                if(tempfile.exists()){
+                    FileInputStream fin = new FileInputStream(tempPath);
+                    ObjectInputStream Objsc = new ObjectInputStream(fin);
+                    CharacterBase tempchar = (CharacterBase) Objsc.readObject();
+                    players.add(new PlayerAcc(username, tempchar.getScore(), ""));
+                }
             }
             reader.close();
         } catch (IOException e) {
@@ -142,27 +157,5 @@ public class leaderboardGUInew extends JPanel {
 //        pack();
 //        setLocationRelativeTo(null);
         setVisible(true);
-    }
-
-    
-    
-    
-    
-    public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        
-        leaderboardGUInew lb = new leaderboardGUInew();
-        frame.setSize(400,400);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        frame.add(lb);
-        
-        
-        frame.pack();
-//        SwingUtilities.invokeLater(leaderboardGUI::new);
-    }
-   
-    
-    
+    } 
 }

@@ -56,17 +56,11 @@ public class CharacterManager {
     
     public void respawn(int x, int y){
         this.testChar = new CharacterBase(x,y);
-        
-
     }
-    
     
     public void Update(){
         if(collisionWithExit())playing.setEndgame(true);
-            
     }
-
-    
     
     public void goup(){
         testChar.setY(testChar.getY()-speed);

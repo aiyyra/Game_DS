@@ -11,6 +11,7 @@ import Scenes.*;
 import javax.swing.JFrame;
 import static main.GameStates.*;
 import Scenes.leaderboardGUInew;
+import UserInfo.saveGame;
 
 /**
  *
@@ -18,6 +19,7 @@ import Scenes.leaderboardGUInew;
  */
 public class game extends JFrame implements Runnable{
     
+    private String username;
     private GameScreen gameScreen;
     private Thread gameThread;
     private final double FPS_SET = 120.0;
@@ -26,13 +28,15 @@ public class game extends JFrame implements Runnable{
     //classes
     private Render render;
     private Menu menu;
-    private Playing playing;
+    private static Playing playing;
     private Setting setting;
     private LeaderboardEnd end;
     private leaderboardGUInew board;
+    private static saveGame saver;
        
-    public game() {
+    public game(String username) throws ClassNotFoundException {
         
+        this.username = username;
         initClasses();
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -110,32 +114,43 @@ public class game extends JFrame implements Runnable{
     }
 
     
-    public static void main(String[] args) {
-        game game = new game();
+    public static void main(String[] args) throws ClassNotFoundException {
+        game game = new game("afiq");
         SoundHandler.RunMusic("resource/suzume_instrument.wav");
         game.gameScreen.initInputs();
         game.start();
     }
 
-    private void initClasses() {
+    private void initClasses() throws ClassNotFoundException {
         render = new Render(this);
         gameScreen=new GameScreen(this);
         menu = new Menu(this);
         playing = new Playing(this);
         setting = new Setting(this);
         end = new LeaderboardEnd(this);
-        board = new leaderboardGUInew();
+        board = new leaderboardGUInew(this);
+        saver = new saveGame(this);
         
     }
     
-    public void showBoard(){
+    public void showBoard() throws ClassNotFoundException{
+        board = new leaderboardGUInew(this);
         getGameScreen().setVisible(false);
         board.setVisible(true);
         this.add(board);
     }
-
     
+    public void loadGame(){
+        
+    }
+    
+
     //getter setter
+    
+    public String getUsername() {
+        return username;
+    }
+
     public Render getRender() {
         return render;
     }
@@ -144,7 +159,7 @@ public class game extends JFrame implements Runnable{
         return menu;
     }
 
-    public Playing getPlaying() {
+    public static Playing getPlaying() {
         return playing;
     }
 
@@ -159,6 +174,12 @@ public class game extends JFrame implements Runnable{
     public LeaderboardEnd getEnd() {
         return end;
     }
+
+    public static saveGame getSaver() {
+        return saver;
+    }
+    
+    
     
 
 }
