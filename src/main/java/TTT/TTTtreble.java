@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package TTT;
+import Scenes.Playing;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -26,12 +27,14 @@ public class TTTtreble implements ActionListener{
     JButton[] buttons;
 //    boolean player1_turn;
     List<Integer> selections = new ArrayList<Integer>();
+    Playing playing;
     BoardTreble gameBoard;// = new BoardTreble(tiles);
     
 
 //printing board
     
-    public TTTtreble(int tiles){
+    public TTTtreble(int tiles,Playing playing){
+        this.playing = playing;
         this.tiles = tiles;
         this.buttons = new JButton[tiles];
         gameBoard = new BoardTreble(tiles);
@@ -88,6 +91,7 @@ public class TTTtreble implements ActionListener{
 
                     //check for gameover
                     if (gameBoard.gameOver()) {
+                        playing.setWinTicTacToe(true, 50);
                         GameOver();
                         break;
                     }
@@ -100,6 +104,7 @@ public class TTTtreble implements ActionListener{
         //gameBoard.printBoard();
 
                     if (gameBoard.gameOver()) {
+                        playing.setLossTicTacToe(true);
                         GameOver();
                         break;
                     }
