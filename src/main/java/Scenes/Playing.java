@@ -160,7 +160,7 @@ public class Playing extends GameScenes implements SceneMethod{
                 break;
             case 2,5:new ReversedTTT(level,this);
                 break;
-            case 3,6:new TTTtreble(12);//TTTtreble(12,this);
+            case 3,6:new TTTtreble(12,this);//TTTtreble(12,this);
                 break;
         }
     }
