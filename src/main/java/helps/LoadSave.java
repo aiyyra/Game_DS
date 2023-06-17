@@ -5,6 +5,11 @@
 package helps;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -12,9 +17,19 @@ import java.awt.Color;
  */
 
 
-//loading the pic (eps 5 11.49)
 public class LoadSave {
     
     public static Color getColor;
+    public static BufferedImage getSpriteAtlas(){
+        BufferedImage img = null;
+        File imagefile = new File("resource/resizetiles.png");
+        
+        try{
+            img = ImageIO.read(imagefile);
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return img;
+    }
     
 }

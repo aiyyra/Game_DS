@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import static main.GameStates.*;
 import Scenes.leaderboardGUInew;
 import UserInfo.saveGame;
+import java.awt.Graphics;
 
 /**
  *
@@ -39,14 +40,17 @@ public class game extends JFrame implements Runnable{
         
         this.username = username;
         initClasses();
+        setUndecorated(true);
         setVisible(true);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        
         setResizable(false);
         add(gameScreen);
         
+        
+        
         pack();
-        setVisible(true);
+        setLocationRelativeTo(null);
     }
     
     
@@ -141,10 +145,24 @@ public class game extends JFrame implements Runnable{
         getGameScreen().setVisible(false);
         board.setVisible(true);
         this.add(board);
-    }
-    
-    public void loadGame(){
         
+        long tick = 1000;
+        long startTime = System.currentTimeMillis();
+
+        while (true) {
+            long now = System.currentTimeMillis();
+            while (now - startTime > tick) {
+                System.out.println("Seconds from start time: " + (int) (tick / 1000));
+                tick += 1000;
+            }
+            if(now == startTime+5000){
+                remove(board);
+                SetGameStates(MENU);
+                getGameScreen().setVisible(true);
+                break;
+                
+            }
+        }
     }
     
 

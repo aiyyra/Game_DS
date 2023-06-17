@@ -5,6 +5,7 @@
 package Objects;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -12,7 +13,8 @@ import java.awt.Color;
  */
 public class Tile {
     
-//    private bufferedimage sprite;
+    private BufferedImage sprite;
+    
     private Color color;
     private int val;
 
@@ -29,7 +31,14 @@ public class Tile {
         return val;
     }
     
-//     public getsprite
+    public Tile(BufferedImage sprite){
+        this.sprite = sprite;
+    }
+    
+    public BufferedImage getSprite() {
+        return sprite;
+    }
+    
 
     
     
@@ -42,6 +51,8 @@ public class Tile {
 //    //tgok balik
 //    public Tile(int[][] maparray) {
 //        this.maparray = maparray;
+
+    
 
     
 

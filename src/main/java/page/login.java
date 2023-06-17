@@ -19,6 +19,8 @@ public class login extends javax.swing.JFrame {
      */
     public login() {
         initComponents();
+        pack();
+        setLocationRelativeTo(null);
         playerAcc = new PlayerAcc("", 0, ""); // Initialize the PlayerAcc instance
     }
 

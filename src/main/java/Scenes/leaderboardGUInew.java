@@ -14,6 +14,9 @@ import UserInfo.PlayerAcc;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -25,8 +28,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import main.game;
-//import java.io.BufferedReader;
-//import java.io.FileReader;
 
 public class leaderboardGUInew extends JPanel {
     private List<PlayerAcc> players;
@@ -35,7 +36,6 @@ public class leaderboardGUInew extends JPanel {
    
     private JLabel titleLabel;
     private JPanel leaderboardPanel;
-    //private JButton button = new JButton();
     
     public leaderboardGUInew(game game) throws ClassNotFoundException {
         players = new ArrayList<>();
@@ -64,18 +64,6 @@ public class leaderboardGUInew extends JPanel {
             System.out.println("An error occurred while reading player information.");
             e.printStackTrace();
         }
-        
-        //example data
-        // Initialize players
-//        players = new ArrayList<>();
-//        players.add(new Player("Player 1", 5)); // Example player data
-//        players.add(new Player("Player 2", 7));
-//        players.add(new Player("Player 3", 9));
-//        players.add(new Player("Player 4", 6));
-//        players.add(new Player("Player 5", 4));
-//        players.add(new Player("Player 6", 1));
-//        players.add(new Player("Player 7", 0));
-        // Add more players as needed
         
         
         // Sort players based on score in descending order
@@ -149,13 +137,6 @@ public class leaderboardGUInew extends JPanel {
         gbc.weighty = 1.0;
         add(leaderboardPanel, gbc);
         
-        // Set up the frame
-//        setTitle("Leaderboard ");
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        getContentPane().add(new JScrollPane(leaderboardPanel));
-        
-//        pack();
-//        setLocationRelativeTo(null);
         setVisible(true);
-    } 
+    }
 }

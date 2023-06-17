@@ -89,17 +89,18 @@ public class Playing extends GameScenes implements SceneMethod{
         for(int y =0;y<map.length;y++){
             for(int x=0;x<map[y].length;x++){
                 int id = map[y][x];
-                g.setColor(tileManager.getColor(id));
-                g.fillRect(y*tilesSize, x*tilesSize, tilesSize, tilesSize);
+                g.drawImage(tileManager.getSprite(id), y*25, x*25, null);
             }
         }
+        g.setColor(Color.black);
+        g.drawRect(0, 0, 499, 999);
     }
     
     private void drawSPath(Graphics g){
         for(int x=0;x<spath.length;x++){
             for(int y=0;y<spath[0].length;y++){
                 if(spath[x][y]==1){
-                    g.setColor(Color.blue);
+                    g.setColor(Color.red);
                     g.fillOval(y*tilesSize+14, x*tilesSize+14, 5, 5);
                 }
                 

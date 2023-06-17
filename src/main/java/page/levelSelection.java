@@ -27,6 +27,8 @@ public class levelSelection extends javax.swing.JFrame {
         setVisible(true);
         this.username = username;
         initComponents();
+        pack();
+        setLocationRelativeTo(null);
     }
 
     /**

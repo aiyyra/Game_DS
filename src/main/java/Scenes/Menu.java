@@ -7,6 +7,8 @@ package Scenes;
 import Map.FinalMap;
 import UI.MyButton;
 import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import main.GameStates;
 import static main.GameStates.*;
 import main.game;
@@ -19,6 +21,7 @@ public class Menu extends GameScenes implements SceneMethod{
 
     private int[][] map = new FinalMap().getFin();
     private int PIXEL_SIZE = 25;
+    Image icon =new ImageIcon("resource/Suzumegif.gif").getImage();
     
     private MyButton bPlaying,bload,bQuit,bLeaderboard,bFree;
     
@@ -29,15 +32,17 @@ public class Menu extends GameScenes implements SceneMethod{
 
     @Override
     public void render(Graphics g) {
+        g.drawImage(icon, 0, 0, 500, 1000, null);
         drawButton(g);
     }
-
+    
     private void drawButton(Graphics g) {
         bPlaying.draw(g);
         bload.draw(g);
         bFree.draw(g);
         bLeaderboard.draw(g);
         bQuit.draw(g);
+        g.drawRect(0, 0, 499, 999);
         
     }
 
@@ -46,14 +51,14 @@ public class Menu extends GameScenes implements SceneMethod{
         int w = 150;
         int h = w/3;
         int x = 500/2 - w/2;
-        int y = 150;
+        int y = 350;
         int yOffSet = 100;
         
         bPlaying = new MyButton("Play", x, y, w, h);
         bload = new MyButton("Load Game", x,( y + yOffSet), w, h);
         bFree = new MyButton("Free Play", x, (y + yOffSet*2), w, h);
         bLeaderboard = new MyButton("Leaderboard", x, (y + yOffSet*3), w, h);
-        bQuit = new MyButton("Quit", x, (y + yOffSet*4), w, h);
+        bQuit = new MyButton("Exit Game", x, (y + yOffSet*4), w, h);
         
     }
 
