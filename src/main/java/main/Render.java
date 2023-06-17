@@ -33,6 +33,8 @@ public class Render {
                 break;
             case END:
                 game.getEnd().render(g);
+            case FREEPLAY:
+                game.getFree().render(g);
                 break;
         }
     }

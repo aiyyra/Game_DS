@@ -25,13 +25,8 @@ public class TTTnormal implements ActionListener{
     boolean player1_turn;
     int tiles = 9;
     
-    public void set5x5(){
-        this.buttons = new JButton[25];
-        this.tiles =25;
-    }
     
-    
-    TTTnormal(){
+    public TTTnormal(){
         
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setSize(400,400);

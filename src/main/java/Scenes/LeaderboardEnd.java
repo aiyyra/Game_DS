@@ -7,6 +7,8 @@ package Scenes;
 import UI.MyButton;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import main.GameStates;
 import static main.GameStates.SetGameStates;
@@ -29,7 +31,11 @@ public class LeaderboardEnd extends GameScenes implements SceneMethod{
     
     
     public void update(game game){
-        game.showBoard();
+        try {
+            game.showBoard();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LeaderboardEnd.class.getName()).log(Level.SEVERE, null, ex);
+        }
         }
         
     @Override

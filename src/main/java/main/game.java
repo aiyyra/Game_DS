@@ -31,6 +31,7 @@ public class game extends JFrame implements Runnable{
     private static Playing playing;
     private Setting setting;
     private LeaderboardEnd end;
+    private FreePlay free;
     private leaderboardGUInew board;
     private static saveGame saver;
        
@@ -65,9 +66,10 @@ public class game extends JFrame implements Runnable{
                  break;
             case SETTINGS:
                  break;
+            case FREEPLAY:
+                 break;
             case END:
                 end.update(this);
-                
                 break;
             default:
                 break; 
@@ -128,6 +130,7 @@ public class game extends JFrame implements Runnable{
         playing = new Playing(this);
         setting = new Setting(this);
         end = new LeaderboardEnd(this);
+        free = new FreePlay(this);
         board = new leaderboardGUInew(this);
         saver = new saveGame(this);
         
@@ -177,6 +180,10 @@ public class game extends JFrame implements Runnable{
 
     public static saveGame getSaver() {
         return saver;
+    }
+
+    public FreePlay getFree() {
+        return free;
     }
     
     

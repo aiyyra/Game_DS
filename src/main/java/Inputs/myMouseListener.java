@@ -38,6 +38,10 @@ public class myMouseListener implements MouseListener,MouseMotionListener{
                     break;
                 case END:
                     game.getEnd().mouseClicked(e.getX(),e.getY());
+                    break;
+                case FREEPLAY:
+                    game.getFree().mouseClicked(e.getX(),e.getY());
+                    break;
                 default:
                     break;
             }
@@ -59,6 +63,10 @@ public class myMouseListener implements MouseListener,MouseMotionListener{
                     break;
                 case END:
                     game.getEnd().mousePressed(e.getX(),e.getY());
+                    break;
+                case FREEPLAY:
+                    game.getFree().mousePressed(e.getX(),e.getY());
+                    break;
                 default:
                     break;
             }
@@ -80,6 +88,10 @@ public class myMouseListener implements MouseListener,MouseMotionListener{
                     break;
                 case END:
                     game.getEnd().mouseReleased(e.getX(),e.getY());
+                    break;
+                case FREEPLAY:
+                    game.getFree().mouseReleased(e.getX(),e.getY());
+                    break;
                 default:
                     break;
             }
@@ -113,6 +125,9 @@ public class myMouseListener implements MouseListener,MouseMotionListener{
                     break;
                 case END:
                     game.getEnd().mouseMoved(e.getX(),e.getY());
+                    break;
+                case FREEPLAY:
+                    game.getFree().mouseMoved(e.getX(),e.getY());
                 default:
                     break;
             }

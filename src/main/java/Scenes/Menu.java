@@ -20,7 +20,7 @@ public class Menu extends GameScenes implements SceneMethod{
     private int[][] map = new FinalMap().getFin();
     private int PIXEL_SIZE = 25;
     
-    private MyButton bPlaying,bload,bQuit,bLeaderboard;
+    private MyButton bPlaying,bload,bQuit,bLeaderboard,bFree;
     
     public Menu(game game) {
         super(game);
@@ -35,8 +35,10 @@ public class Menu extends GameScenes implements SceneMethod{
     private void drawButton(Graphics g) {
         bPlaying.draw(g);
         bload.draw(g);
-        bQuit.draw(g);
+        bFree.draw(g);
         bLeaderboard.draw(g);
+        bQuit.draw(g);
+        
     }
 
     private void initButtons() {
@@ -49,8 +51,10 @@ public class Menu extends GameScenes implements SceneMethod{
         
         bPlaying = new MyButton("Play", x, y, w, h);
         bload = new MyButton("Load Game", x,( y + yOffSet), w, h);
-        bQuit = new MyButton("Quit", x, (y + yOffSet*2), w, h);
+        bFree = new MyButton("Free Play", x, (y + yOffSet*2), w, h);
         bLeaderboard = new MyButton("Leaderboard", x, (y + yOffSet*3), w, h);
+        bQuit = new MyButton("Quit", x, (y + yOffSet*4), w, h);
+        
     }
 
     @Override
@@ -69,6 +73,9 @@ public class Menu extends GameScenes implements SceneMethod{
         }
         if(bLeaderboard.getBounds().contains(x,y)){
             SetGameStates(GameStates.END);
+        }
+        if(bFree.getBounds().contains(x,y)){
+            SetGameStates(GameStates.FREEPLAY);
         }
     }
 
@@ -90,6 +97,10 @@ public class Menu extends GameScenes implements SceneMethod{
         if(bLeaderboard.getBounds().contains(x,y)){
             bLeaderboard.setMouseOver(true);
         }
+        bFree.setMouseOver(false);
+        if(bFree.getBounds().contains(x,y)){
+            bFree.setMouseOver(true);
+        }
     }
 
     @Override
@@ -106,7 +117,9 @@ public class Menu extends GameScenes implements SceneMethod{
         if(bLeaderboard.getBounds().contains(x,y)){
             bLeaderboard.setMousePressed(true);
         }
-        
+        if(bFree.getBounds().contains(x,y)){
+            bFree.setMousePressed(true);
+        }
     }
 
     @Override
@@ -119,6 +132,7 @@ public class Menu extends GameScenes implements SceneMethod{
         bload.resetBooleans();
         bQuit.resetBooleans();
         bLeaderboard.resetBooleans();
+        bFree.resetBooleans();
     }
 
     
