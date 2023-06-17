@@ -30,9 +30,7 @@ public class LeaderboardEnd extends GameScenes implements SceneMethod{
     
     public void update(game game){
         try {
-            
             game.showBoard();
-            SetGameStates(GameStates.MENU);
             
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(LeaderboardEnd.class.getName()).log(Level.SEVERE, null, ex);

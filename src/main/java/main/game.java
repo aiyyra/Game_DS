@@ -144,7 +144,7 @@ public class game extends JFrame implements Runnable{
         board = new leaderboardGUInew(this);
         getGameScreen().setVisible(false);
         board.setVisible(true);
-        this.add(board);
+        add(board);
         
         long tick = 1000;
         long startTime = System.currentTimeMillis();
@@ -156,13 +156,13 @@ public class game extends JFrame implements Runnable{
                 tick += 1000;
             }
             if(now == startTime+5000){
-                remove(board);
-                SetGameStates(MENU);
-                getGameScreen().setVisible(true);
                 break;
-                
             }
         }
+        remove(board);
+        getGameScreen().setVisible(true);
+        getGameScreen().requestFocus();
+        SetGameStates(MENU);
     }
     
 
