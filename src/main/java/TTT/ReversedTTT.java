@@ -5,7 +5,7 @@ import Scenes.Playing;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-import javax.swing.*;   
+import javax.swing.*;
 
 public class ReversedTTT extends JFrame implements ActionListener {
     private final char[][] board;
@@ -14,7 +14,7 @@ public class ReversedTTT extends JFrame implements ActionListener {
     private final Difficulty difficulty;
     private final JButton[][] buttons;
     private Playing playing;
-
+    private Stack<int[]> moveStack;
     enum Difficulty {
         EASY, MEDIUM, HARD
     }
@@ -33,6 +33,7 @@ public class ReversedTTT extends JFrame implements ActionListener {
         this.buttons = new JButton[3][3];
         initializeBoard();
         createGUI();
+        this.moveStack = new Stack<>();
     }
 
     private void initializeBoard() {
@@ -89,6 +90,13 @@ public class ReversedTTT extends JFrame implements ActionListener {
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
+
+        JButton undoButton = new JButton("Undo");
+        undoButton.setFont(new Font("Ink Free", Font.BOLD, 24));
+        undoButton.addActionListener(this);
+
+        buttonPanel.add(newGameButton);
+        buttonPanel.add(undoButton);
     }
     private int calculateScore(char player) {
         if (checkWin(player)) {
@@ -125,6 +133,8 @@ public class ReversedTTT extends JFrame implements ActionListener {
                     button.setText("X");
                     button.setForeground(Color.BLUE);
                     board[row][col] = 'X';
+                    int[] move = {row, col};
+                    moveStack.push(move);
 
                     if (checkWin('X')) {
                         playing.setLossTicTacToe(true);
@@ -145,10 +155,21 @@ public class ReversedTTT extends JFrame implements ActionListener {
 
             } else if (button.getText().equals("New Game")) {
                 resetGame();
+            }else if (button.getText().equals("Undo")) {
+                undoMove();
             }
         }
     }
-
+    private void undoMove() {
+        if (!moveStack.isEmpty()) {
+            int[] move = moveStack.pop();
+            int row = move[0];
+            int col = move[1];
+            buttons[row][col].setText("");
+            board[row][col] = ' ';
+            currentPlayer = 'X';
+        }
+    }
 
 
     private void resetGame() {
@@ -353,9 +374,9 @@ public class ReversedTTT extends JFrame implements ActionListener {
 
         return false;
     }
-    
-    
-    
-    
+
+
+
+
 
 }
