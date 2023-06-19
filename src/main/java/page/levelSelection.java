@@ -135,11 +135,10 @@ public class levelSelection extends javax.swing.JFrame {
             try {
                 this.difficulty =jComboBox1.getSelectedIndex();
                 this.dispose();
-                
                 game game = new game(username);
                 SoundHandler.RunMusic("resource/suzume_instrument.wav");
                 game.getGameScreen().initInputs();
-                game.getPlaying().setLevel(difficulty);
+                game.getPlaying().setLevel(difficulty+1);
                 game.start();
             } catch (ClassNotFoundException ex) {
                 Logger.getLogger(levelSelection.class.getName()).log(Level.SEVERE, null, ex);
